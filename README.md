@@ -28,4 +28,17 @@ Copyright (c) 2023 Anna Weller (University of Cologne)
 
 ## Installation
 
+The package can be added by specifying the URL to the Git repository. In your `julia` terminal, enter the following commands
+
+
+```julia
+julia> using Pkg
+julia> Pkg.add(url="https://github.com/AnnaWeller/MeGraPDE.jl");
+```
+
+You are all set. The package can now be activated with the command 
+
+```@repl
+using MeGraPDE
+```
 
