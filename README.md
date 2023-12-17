@@ -26,4 +26,6 @@ The package is under continuous development.
 
 Copyright (c) 2023 Anna Weller (University of Cologne)
 
-## Installation:
+## Installation
+
+
