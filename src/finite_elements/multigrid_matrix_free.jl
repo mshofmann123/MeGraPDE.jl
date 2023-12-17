@@ -56,7 +56,7 @@ end
 
 # Intergrid Operators
 
-## nicht-equilateral
+## non-equilateral
 
 """
     prolongate!(v_fine::Vector, lev_para::Level_Parameters, v_coarse::Vector, mg_const::MG_Constants)
