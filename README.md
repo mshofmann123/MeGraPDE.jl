@@ -12,6 +12,8 @@ Among others, the package includes
 - computation of quantum graph eigenvalues and eigenfunctions
 - spectral Galerkin solver for PDEs on metric graphs, e.g. in combination with a filon-quadrature
 
+The package relies on the methods from [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl) for combinatorial graphs.
+
 The finite element discretization via extended graphs is implemented based on the original work \[AB\]. 
 The computation of equilateral quantum graph eigenvalues is based on an idea originally proposed by von Below \[B\].
 The remaining methods and the related theory have been derived for \[W\] and are discussed therein.
