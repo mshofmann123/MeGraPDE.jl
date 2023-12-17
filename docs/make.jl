@@ -27,7 +27,6 @@ makedocs(
     remotes = nothing
 )
 
-
 #= makedocs(;
     root    = "<current-directory>",
     source  = "src",

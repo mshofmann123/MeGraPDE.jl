@@ -1,5 +1,12 @@
 # Your first metric graph
 
+Before you start, go to the installation section and activate `MeGraPDE` in the current session with the command 
+
+```@example
+using MeGraPDE
+```
+
+
 ## Creating a metric graph
 Let us first create a combinatorial star graph `G` with 5 vertices and 4 edges using [Graphs.jl](https://github.com/JuliaGraphs/Graphs.jl)
 
@@ -69,7 +76,7 @@ plot_graph_3d(Γ)
 !!! note "Note" 
     The previous example graph can be assembled using the constructor [`metric_star_graph`](@ref)
     and indicating the desired edge length as `metric_star_graph(ℓ = pi + pi/2)`. 
-    Several other example graphs are implemented..
+    Several other example graphs are implemented.
 
 ## Functions on metric graphs
 
