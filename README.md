@@ -2,9 +2,7 @@
 
 MeGraPDE stands for MetricGraphPDEs and implements numerical methods for the solution of partial differential equations (PDEs) on metric graphs. I have developed the MeGraPDE.jl package in connection with my Ph.D thesis at the University of Cologne \[W\]. 
 
-Installation:
-
-Please see the Documentation for usage instructions.
+## Info
 
 Among others, the package includes
 
@@ -28,3 +26,4 @@ The package is under continuous development.
 
 Copyright (c) 2023 Anna Weller (University of Cologne)
 
+## Installation:
