@@ -11,7 +11,7 @@ function animate_diffusion(Γ::EquilateralMetricGraph, u0::Vector{Function}, T::
     anim = @animate for t in 0:dt:T
         coef_t = exp(-t*Diagonal(σ.Λ.^(α)))*coefs
         u_Q=spectral_solution(Γ, σ, coef_t)
-        plot_function_3d(Γ, u_Q, size=(250,250), lw=3, grid_off=true)
+        plot_function_3d(Γ, u_Q, size=(150,150), lw=2, grid_off=true)
     end
     gif(anim, fps=5)
 end
