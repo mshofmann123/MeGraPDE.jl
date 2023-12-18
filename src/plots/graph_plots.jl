@@ -67,7 +67,7 @@ function plot_function_3d(Γ::Union{EquilateralMetricGraph,MetricGraph}, u::Vect
     end
     ### plot vertices
     for v in vertices(Γ.G)
-        scatter!(plt,[Γ.coords[v][1]],[Γ.coords[v][2]],[0],color=color_graph,markerstrokecolor=color_graph,markersize=lw-2)
+        scatter!(plt,[Γ.coords[v][1]],[Γ.coords[v][2]],[0],color=color_graph,markerstrokecolor=color_graph,markersize=lw)
     end
     ## plot function
     for (j,e) in enumerate(edges(Γ.G))
