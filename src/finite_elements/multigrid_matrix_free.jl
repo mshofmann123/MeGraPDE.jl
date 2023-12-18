@@ -56,7 +56,7 @@ end
 
 # Intergrid Operators
 
-## non-equilateral
+## nicht-equilateral
 
 """
     prolongate!(v_fine::Vector, lev_para::Level_Parameters, v_coarse::Vector, mg_const::MG_Constants)
@@ -362,6 +362,7 @@ end
 """
     matrix_free_jacobi!(u::Vector, J::Int, f::Vector, mg_const::MG_Constants)
 
+Iteration of matrix-free Jacobi smoother.     
 """
 function matrix_free_jacobi!(u::Vector, J::Int, f::Vector, mg_const::MG_Constants)
     h = 2.0^(-J)
@@ -384,6 +385,7 @@ end
 """
     smooth_jacobi!(u0::Vector, J::Int, f_J::Vector, nu1::Int, mg_const::MG_Constants)
 
+Matrix-free Jacobi smoother.     
 """
 function smooth_jacobi!(u0::Vector, J::Int, f_J::Vector, nu1::Int, mg_const::MG_Constants)
     for _ = 1:nu1
@@ -438,6 +440,7 @@ end
 """
     mat_mul_H!(out::Vector, J::Int, u::Vector, mg_const::MG_Constants)
 
+Perform multiplication H_'J'*'u' and store output in 'out'.
 """
 function mat_mul_H!(out::Vector, J::Int, u::Vector, mg_const::MG_Constants)
     h = 2.0^(-J)
@@ -454,7 +457,7 @@ end
 """
     mat_mul_M!(out::Vector, u::Vector, J::Int, mg_const::MG_Constants)
 
-Perform multiplication M_'J'*'u' and store output in 'out'
+Perform multiplication M_'J'*'u' and store output in 'out'.
 """
 function mat_mul_M!(out::Vector, u::Vector, J::Int, mg_const::MG_Constants)
     h = 2.0^(-J)
@@ -514,6 +517,7 @@ end
 """
     MGM_matrix_free_jacobi!(u0::Vector, J::Int, f_J::Vector, J0::Int, mg_set::MG_Settings, mg_const::MG_Constants)
 
+Matrix free MGM with jacobi smoother. 
 """
 function MGM_matrix_free_jacobi!(u0::Vector, J::Int, f_J::Vector, J0::Int, mg_set::MG_Settings, mg_const::MG_Constants)
     #println(u0)
@@ -568,6 +572,7 @@ end
 """
     solve_mgm(TP::EllipticTestProblem, J::Int; nu1=1, nu2=1, mu=1)
 
+Multigrid solver for elliptic test problem 'TP' at level 'J'. Calls MGM_matrix_free_jacobi!.
 """
 function solve_mgm(TP::EllipticTestProblem, J::Int; nu1=1, nu2=1, mu=1)
     # Set up
@@ -606,6 +611,8 @@ end
 ## currently works only for solving (L+M)u=f, implement for (L+pot*M)!
 """
     ni_mgm(TP:EllipticTestProblem, J_max::Int)
+
+Nested iteration MG solver for elliptic testproblem 'TP' and Level 'J_max'. Calls MGM_matrix_free_jacobi!.
 """
 function ni_mgm(TP::EllipticTestProblem, J_max::Int; nu1=1, nu2=1, mu=1)
     ## currently only implemented for equilateral metric graphs, some changes nec., see cn_mgm
@@ -855,6 +862,9 @@ function cn_fill_jacobi_edges!(u::Vector, lev_para::Level_Parameters, dt::Number
     end
 end
 
+function half_u!(u)
+    u=1/2*u
+end
 
 ## Multigrid
 
@@ -890,6 +900,7 @@ end
 """
     cn_coarse_grid_correction!(u0::Vector, lev_para::Level_Parameters, dt::Float64, f_J::Vector, mg_const::MG_Constants, mg_set::MG_Settings)
 
+Coarse grid correction including transport to lower level and back.
 """
 function cn_coarse_grid_correction!(u0::Vector, lev_para::Level_Parameters, dt::Float64, f_J::Vector, mg_const::MG_Constants, mg_set::MG_Settings)
     # h_vec = lev_para.ℓ_vec./lev_para.Nx_vec;

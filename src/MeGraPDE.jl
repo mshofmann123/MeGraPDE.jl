@@ -94,6 +94,7 @@ include("testproblems.jl")
 
 # Finite Elements
 include("finite_elements/finite_element_discretization.jl")
+include("finite_elements/multigrid.jl")
 include("finite_elements/multigrid_matrix_free.jl")
 
 # Spectral Galerkin

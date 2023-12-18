@@ -127,17 +127,7 @@ end
 """
     TestProblem711
 
-```math
-\\mathcal{H} u + u = f
-```
-on star graph with
-```math
-f = -\\frac{(\\exp(-(x-x_0)^2/s^2) \\cdot (4 (x-x_0)^2-2s^2)}{s^4} + \\exp \\left(- \\frac{(x-x_0)^2}{s^2} \\right)
-```
-on one edge and exact solution
-```math
-\\exp \\left(- \\frac{(x-x_0)^2}{s^2} \\right).
-```
+Elliptic test problem on star graph.
 """
 const TestProblem711 = test_problem_7_1_1()
 
@@ -240,7 +230,7 @@ const TestProblem245 = test_problem_2_4_5()
 
 function test_problem_6_1_6(n::Int,k::Int)
     Γ = metric_barabasi_albert(n,k,ℓ=:non_equi)
-    σ = nested_iteration_newton_trace(Γ; lev_zero=0, lev_max=7, Q=2, return_eigvecs=true)
+    σ = nested_iteration_newton_trace(Γ; lev_zero=0, lev_max=3, Q=2, return_eigvecs=true)
     A_q = σ.A[:,1]; B_q = σ.B[:,1]; λ_q = σ.Λ[1]
     # initial condition & exact solution
     u0 = []; u = []; u_deriv = []

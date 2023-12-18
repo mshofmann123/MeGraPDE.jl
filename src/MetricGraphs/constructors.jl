@@ -125,7 +125,7 @@ end
 """
     metric_lollipop_graph(n1::Int, n2::Int; ℓ=1)
 
-Create a lollipop graph with clique of size 'n1' connected by an edge to a path of size 'n2', equilateral edge lengths 'ℓ'
+Create a lollipop graph with clique of size 'n1' connected by an edge to a path of size 'n2', equilateral edge lengths 'ℓ'.
 """
 function metric_lollipop_graph(;n1=3, n2=2, ℓ=1)
     G = lollipop_graph(n1,n2)
@@ -168,13 +168,34 @@ end
 """
     metric_erdos_renyi(n::Int, p::Number; ℓ=1)
 
-Create equilateral Erdos-Renyi graph with 'n' vertices connected by edges with probability 'p', see Graphs.erdos_renyi
+Create equilateral Erdos-Renyi graph with 'n' vertices connected by edges with probability 'p', see Graphs.erdos_renyi.
 """
 function metric_erdos_renyi(n::Int, p::Number; ℓ=1)
     G = erdos_renyi(n,p)
     return EquilateralMetricGraph(G, ℓ, nothing)
 end
 
+
+"""
+    gaussian_initial(Γ; j_init = :randomly)
+
+Assigne gaussian intial condition to one edge (randomly chosen or specified) of the graph.
+"""
+function gaussian_initial(Γ, j_init =:randomly )
+    u0 = Vector{Function}(undef,ne(Γ.G))
+    if j_init == :randomly
+        j_init = rand(1:ne(Γ.G))
+    end
+    for j = 1:ne(Γ.G)
+        if j == j_init
+            x0 = Γ.ℓ/2; s = Γ.ℓ/10;
+            u0[j] = x -> exp(-(x-x0)^2/s^2)
+        else
+            u0[j] = x -> 0
+        end
+    end
+    return u0
+end
 
 """
     gaussian_initial(Γ; j_init = :randomly)

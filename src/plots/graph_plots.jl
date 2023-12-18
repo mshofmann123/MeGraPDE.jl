@@ -63,11 +63,11 @@ function plot_function_3d(Γ::Union{EquilateralMetricGraph,MetricGraph}, u::Vect
         xe = LinRange(Γ.coords[orig][1],Γ.coords[term][1],100)
         ye = LinRange(Γ.coords[orig][2],Γ.coords[term][2],100)
         ze = zeros(length(xe))
-        plot3d!(plt,xe,ye,ze,lw=lw-1,leg=false,color="gray")
+        plot3d!(plt,xe,ye,ze,lw=lw-2,leg=false,color="gray")
     end
     ### plot vertices
     for v in vertices(Γ.G)
-        scatter!(plt,[Γ.coords[v][1]],[Γ.coords[v][2]],[0],color=color_graph,markerstrokecolor=color_graph,markersize=lw)
+        scatter!(plt,[Γ.coords[v][1]],[Γ.coords[v][2]],[0],color=color_graph,markerstrokecolor=color_graph,markersize=2)
     end
     ## plot function
     for (j,e) in enumerate(edges(Γ.G))
