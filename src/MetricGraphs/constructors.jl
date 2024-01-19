@@ -145,11 +145,11 @@ end
 """
     metric_barabasi_albert(n::Int, k::Int; ℓ=1, seed=nothing)
 
-Create equilateral Barbási-Albert graph with 'n' vertices by growing an initial graph with 'k' vertices and 
+Create Barbási-Albert graph with 'n' vertices by growing an initial graph with 'k' vertices and 
 attaching each vertex with 'k' edges, see Graphs.barabasi_albert. 
 
 ### Optional Arguments
-- ℓ=1: equilateral edge length. 
+- ℓ: specify equilateral edge length, vector with edge length or ":non_equi" for random edge length 
 - seed=nothing: set the RNG seed.
 """
 function metric_barabasi_albert(n::Int, k::Int; ℓ=1, seed=nothing)
@@ -157,7 +157,7 @@ function metric_barabasi_albert(n::Int, k::Int; ℓ=1, seed=nothing)
     if ℓ == :non_equi
         ℓ_vec = round.((rand(Uniform(1,2),ne(G))),digits=2)
         return MetricGraph(G, ℓ_vec, nothing)
-    elseif  type_of(ℓ) == Vector
+    elseif  typeof(ℓ) == Vector
         return MetricGraph(G, ℓ_vec, nothing)
     else
         return EquilateralMetricGraph(G, ℓ, nothing)
