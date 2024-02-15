@@ -71,12 +71,11 @@ function spectral_solver(TP::TPGeneralizedHeat, T::Number, K::Int; filon=false)
     σ = eigen_quantum(TP.Γ, K=K);
     if filon == false
         coef = projection_coefficients(TP.Γ, σ, TP.u0)
-        return exp(-T*σ.Λ)*coef
+        return diagm(exp.(-T*σ.Λ))*coef
     else
         coef = projection_coefficients_filon(TP.Γ, σ, TP.u0, 15*K)
-        return exp(-T*σ.Λ)*coef
+        return diagm(exp.(-T*σ.Λ))*coef
     end
-    return Diagonal((σ.Λ + TP.pot*ones(σ.Q)).^(-1)) * f
 end
 
 
