@@ -57,7 +57,7 @@ export
     projection_coefficients,
     projection_coefficients_filon,
     spectral_solution,
-    spectral_galerkin_solver,
+    spectral_solver,
     L2_norm_spectral,
     H1_seminorm_spectral,
     # Testproblems
