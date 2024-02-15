@@ -50,7 +50,7 @@ Compute coefficents of the spectral Galerkin solution of 'TP' with eigenfunction
 
 If filon=true, the more economic filon-quadrature is applied instead of QuadGK.
 """
-function spectral_galerkin_solver(TP::EllipticTestProblem, K::Int; filon=false)
+function spectral_solver(TP::EllipticTestProblem, K::Int; filon=false)
     σ = eigen_quantum(TP.Γ, K=K);
     if filon == false
         f = projection_coefficients(TP.Γ, σ, TP.rhs)
@@ -67,7 +67,7 @@ Compute coefficents of the spectral Galerkin solution of 'TP' at time 'T' with e
 
 If filon=true, the more economic filon-quadrature is applied instead of QuadGK.
 """
-function spectral_galerkin_solver(TP::TPGeneralizedHeat, K::Int; filon=false)
+function spectral_solver(TP::TPGeneralizedHeat, T::Number, K::Int; filon=false)
     σ = eigen_quantum(TP.Γ, K=K);
     if filon == false
         coef = projection_coefficients(TP.Γ, σ, TP.u0)
