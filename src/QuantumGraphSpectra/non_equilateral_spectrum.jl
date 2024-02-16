@@ -19,8 +19,9 @@ function equilateral_floor_approximation(Γ::MetricGraph, h::Number)
     end
     cl_Γ = MetricGraph(Γ.G,ℓ_approx, nothing)
     # -- incidence matrix of extended graph with equilateraler edge length h ---------
-    N_ceil = extended_incidence_matrix(MetricGraph(Γ.G, ℓ_approx, nothing), h)
-    Γ̃ = EquilateralMetricGraph(Graph(N_ceil*N_ceil'),h, nothing)
+    N_floor = extended_incidence_matrix(MetricGraph(Γ.G, ℓ_approx, nothing), h)
+    L_floor = N_floor*N_floor'
+    Γ̃ = EquilateralMetricGraph(Graph(L_floor-sparse(Diagonal(L_floor))),h, nothing)
     # ----- Return -----------------------------------------------------------------
     return EquilateralApproximation(cl_Γ, Γ̃, Symbol("floor"))
 end
@@ -40,7 +41,8 @@ function equilateral_ceil_approximation(Γ::MetricGraph, h::Number)
     cl_Γ = MetricGraph(Γ.G,ℓ_approx, nothing)
     # -- incidence matrix of extended graph with equilateraler edge length h ---------
     N_ceil = extended_incidence_matrix(MetricGraph(Γ.G, ℓ_approx, nothing), h)
-    Γ̃ = EquilateralMetricGraph(Graph(N_ceil*N_ceil'),h, nothing)
+    L_ceil = N_ceil*N_ceil'
+    Γ̃ = EquilateralMetricGraph(Graph(L_ceil-sparse(Diagonal(L_ceil))),h, nothing)   
     # ----- Return -----------------------------------------------------------------
     return EquilateralApproximation(cl_Γ, Γ̃, Symbol("ceil"))
 end
