@@ -888,7 +888,7 @@ function cn_coarse_grid_correction_solve!(v_Jm1::Vector, lev_para::Level_Paramet
     help = lev_para.Nx_vec/2 .<= ones(mg_const.m)
     #
     if help == ones(mg_const.m)  # direct solve
-        v_Jm1[1:end] = (Matrix((dt/2*mg_const.L+abs.(1/6*(mg_const.L+mg_const.Deg))))\d_Jm1)[1:end]
+        v_Jm1[1:end] = (((dt/2*mg_const.L+abs.(1/6*(mg_const.L+mg_const.Deg))))\Vector(d_Jm1))[1:end]
     else       # μ-times application of MGM_Jm1 
         for i = 1:mg_set.mu
             lev_para_Jm1 = Level_Parameters(lev_para.ℓ_vec, lev_para.Nx_vec/2, lev_para.h_vec*2)
