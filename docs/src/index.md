@@ -19,7 +19,7 @@ The remaining methods and the related theory have been derived for \[W\] and are
 
 The package is under continuous development. 
 
-\[W\] Anna Weller, Numerical Methods for Parabolic Partial Differential Equations on Metric Graphs, PhD thesis at the University of Cologne, in preparation.
+\[W\] Anna Weller, Numerical Methods for Parabolic Partial Differential Equations on Metric Graphs, PhD thesis at the University of Cologne, 2024.
 
 \[AB\] Mario Arioli, Michele Benzi, A finite element method for quantum graphs, IMA Journal of Numerical Analysis, Volume 38, Issue 3, July 2018, Pages 1119–1163.
 
