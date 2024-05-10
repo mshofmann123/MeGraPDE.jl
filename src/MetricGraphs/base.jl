@@ -1,7 +1,7 @@
 # © Anna Weller, University of Cologne, 2023
 
 """
-    metric_graph(G::SimpleGraph, ℓ_vec::Vector; coord=nothing)
+    metric_graph(G::SimpleGraph, ℓ_vec::Vector; vertex_coords=nothing)
 
 Create metric graph from simple graph 'G' with edge lengths 'ℓ_vec' and optionally assign a coordinate specified in 'coord' to the vertices.
 
@@ -11,7 +11,7 @@ function metric_graph(G::SimpleGraph, ℓ_vec::Vector; vertex_coords=nothing)
 end
 
 """
-    metric_graph(G::SimpleGraph, ℓ::Number; coord=nothing)
+    metric_graph(G::SimpleGraph, ℓ::Number; vertex_coords=nothing)
 
 Equilateral version with one uniform edge length 'ℓ' assigned to each edge.
 """
