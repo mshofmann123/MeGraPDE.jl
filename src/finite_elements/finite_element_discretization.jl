@@ -13,9 +13,9 @@ end
 """
     fe_matrices(Γ::MetricGraph, h_max::Number; mass_approx = false)
 
-Assemble finite element mass and stiffness matrix.
+Assemble finite element stiffness and mass matrix.
 
-Set mass_approx = true to use mass matrix approximation via Trapezoidal rule.
+Return (stiffness matrix, mass matrix). Set mass_approx = true to use mass matrix approximation via Trapezoidal rule.
 """
 function fe_matrices(Γ::MetricGraph, h_max::Number; mass_approx = false)
     # initialize weight matrices 
