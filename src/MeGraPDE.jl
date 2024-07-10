@@ -53,6 +53,7 @@ export
     nested_iteration_newton_trace,
     newton_trace,
     H_matrix,
+    H_matrix_deriv,
     # spectral galerkin
     projection_coefficients,
     projection_coefficients_filon,
