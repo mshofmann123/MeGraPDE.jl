@@ -1,7 +1,7 @@
 name = "MeGraPDE"
 uuid = "f5133942-26e0-4604-9a1b-db49f110946e"
-authors = ["Anna Weller"]
-version = "1.0.0-DEV"
+authors = ["Jordan Hoffart <jordanhoffart@tamu.edu>", "Matthias Hofmann", "Anna Weller"]
+version = "0.1.0"
 
 [deps]
 Arpack = "7d9fca2a-8960-54d3-9f78-7d1dccf2cb97"
@@ -9,7 +9,6 @@ BSplines = "488c2830-172b-11e9-1591-253b8a7df96d"
 DelimitedFiles = "8bb1440f-4735-579b-a4ab-409b98df4dab"
 Distributions = "31c24e10-a181-5473-b8eb-7969acd0382f"
 DocStringExtensions = "ffbed154-4ef7-542d-bbb7-c09d3a79fcae"
-Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
 Graphs = "86223c79-3864-5bf0-83f7-82e725a168b6"
 LaTeXStrings = "b964fa9f-0449-5b57-a5c2-d3ea65f4040f"
 LinearAlgebra = "37e2e46d-f89d-539d-b4ee-838fcccc9c8e"
@@ -19,7 +18,18 @@ QuadGK = "1fd47b50-473d-5c70-9696-f719f8f3bcdc"
 SparseArrays = "2f01184e-e22b-5df5-ae63-d93ebab69eaf"
 
 [compat]
-julia = "1"
+Arpack = "0.5.4"
+BSplines = "0.3.3"
+DelimitedFiles = "1.9"
+Distributions = "0.25.122"
+DocStringExtensions = "0.9.5"
+Graphs = "1.13"
+LaTeXStrings = "1.4"
+Measures = "0.3.2"
+Plots = "1.41"
+QuadGK = "2.11"
+SparseArrays = "1.10"
+julia = "1.10"
 
 [extras]
 Test = "8dfed614-e22c-5e08-85e1-65c5234f0b40"
