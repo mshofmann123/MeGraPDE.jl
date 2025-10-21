@@ -1,5 +1,8 @@
 push!(LOAD_PATH, "../src/")
 
+using Pkg
+Pkg.instantiate()
+
 using Documenter
 using MeGraPDE
 
