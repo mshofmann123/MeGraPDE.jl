@@ -6,11 +6,11 @@ using Measures
 
 Plot metric graph 'Γ' on 3d-grid.
 
-### Optional Arguments 
-- save_as=false: path to save plot
-- set_title=false: optional title on plot
-- color="gray": color to plot graph
+### Optional Arguments
 
+  - save_as=false: path to save plot
+  - set_title=false: optional title on plot
+  - color="gray": color to plot graph
 """
 function plot_graph_3d(
     Γ::Union{EquilateralMetricGraph,MetricGraph};
@@ -61,12 +61,12 @@ end
 
 Plot function 'u' on metric graph 'Γ' on 3d-grid.
 
-### Optional Arguments 
-- save_as=false: path to save plot
-- set_title=false: optional title on plot
-- color_graph="gray": color to plot graph
-- color_func="cornflowerblue": color to plot function
+### Optional Arguments
 
+  - save_as=false: path to save plot
+  - set_title=false: optional title on plot
+  - color_graph="gray": color to plot graph
+  - color_func="cornflowerblue": color to plot function
 """
 function plot_function_3d(
     Γ::Union{EquilateralMetricGraph,MetricGraph},

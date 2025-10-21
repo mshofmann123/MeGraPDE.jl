@@ -73,7 +73,7 @@ Compute extended graph Laplacian matrix of 'Γ' with 'k' artificial vertices on 
 k inner vertices means each edge is partitioned in k+1 subdivision.
 The construction of the graph Laplacian relies on the same manipulations
 of the original graph as in the extended_incidence_matrix routine. Here,
-however, the Laplacian matrix L=NN^T is returned and some simplifications due 
+however, the Laplacian matrix L=NN^T is returned and some simplifications due
 to the equilateral edge length apply.
 """
 function extended_laplacian(Γ::EquilateralMetricGraph, k::Int)
@@ -103,7 +103,6 @@ end
     discretize_function(Γ::MetricGraph, u::Vector{Function}, h_max::Number)
 
 Return discretized version of 'u' on the extended graph of 'Γ' with step size 'h_max' on the edges.
-
 """
 function discretize_function(Γ::MetricGraph, u::Vector{Function}, h_max::Number)
     u_V = zeros(nv(Γ.G))
@@ -133,7 +132,6 @@ end
     discretize_function(Γ::MetricGraph, u::Vector{Function}, Nx_vec::Vector)
 
 Return discretized version of 'u' on the extended graph of 'Γ' with inner grid points in 'Nx_vec'.
-
 """
 function discretize_function(Γ::MetricGraph, u::Vector{Function}, Nx_vec::Vector)
     u_V = zeros(nv(Γ.G))

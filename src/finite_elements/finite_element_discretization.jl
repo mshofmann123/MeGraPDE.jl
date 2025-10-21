@@ -43,11 +43,10 @@ function fe_matrices(Γ::MetricGraph, h_max::Number; mass_approx=false)
     end
 end
 
-""" 
+"""
     fe_matrices(Γ::EquilateralMetricGraph, h_max::Number; mass_approx = false)
 
 When called for equilateral graphs, apply uniform discretization on each edge.
-
 """
 function fe_matrices(Γ::EquilateralMetricGraph, h_max::Number; mass_approx=false)
     # number of grid points on each edge
@@ -72,19 +71,27 @@ function fe_matrices(Γ::EquilateralMetricGraph, h_max::Number; mass_approx=fals
     end
 end
 
-""" left hat function """
+"""
+left hat function
+"""
 lefthat(x, k, h)=1-(k*h-x)/h
-""" right hat function """
+"""
+right hat function
+"""
 righthat(x, k, h)=1+(k*h-x)/h
-""" vertex hat function if v is start vertex """
+"""
+vertex hat function if v is start vertex
+"""
 vertexhatstart(x, h)=1-(x/h)
-""" vertex hat function if v is end vertex """
+"""
+vertex hat function if v is end vertex
+"""
 vertexhatend(x, h, ℓ)=1-(ℓ-x)/h
 
 """
     fe_rhs(Γ::MetricGraph, rhs::Vector{Function}, h_max::Number)
 
-Return discretized right-hand side rhs with maximum step size h_max on each edge. 
+Return discretized right-hand side rhs with maximum step size h_max on each edge.
 """
 function fe_rhs(Γ::MetricGraph, rhs::Vector{Function}, h_max::Number)
     u_V = zeros(nv(Γ.G));
@@ -169,7 +176,7 @@ end
 """
     fe_discretization(TP::EllipticTestProblem, J::Int; mass_aprox = false)
 
-Compute finite element discretization of elliptic test problem 'TP' with step size 'J'. 
+Compute finite element discretization of elliptic test problem 'TP' with step size 'J'.
 """
 function fe_discretization(TP::EllipticTestProblem, J::Int; mass_aprox=false)
     h_max = 2.0^(-J)
@@ -182,7 +189,7 @@ end
 """
     fe_discretization(TP::TPGeneralizedHeat, J::Int; mass_aprox = false)
 
-Compute finite element discretization of generalized heat equation 'TP' with step size 2^(-'J'). 
+Compute finite element discretization of generalized heat equation 'TP' with step size 2^(-'J').
 """
 function fe_discretization(TP::TPGeneralizedHeat, J::Int; mass_aprox=false)
     h_max = 2.0^(-J)
@@ -212,7 +219,6 @@ end
     finite_element_solver(TP::TPGeneralizedHeat, T::Number, J::Int; solver = "multigrid")
 
 Solve generalized heat equation test problem 'TP' at time 'T' using a finite element discretiation with maximum step size 2^(-'J') followed by CN-MGM.
-
 """
 function finite_element_solver(TP::TPGeneralizedHeat, T::Number, J::Int; solver="multigrid")
     if solver == "multigrid"
@@ -223,7 +229,7 @@ end
 """
     fe_ltwo_error(Γ::EquilateralMetricGraph, u_fe::Vector, u::Vector{Function})
 
-Compute L_2 error of the finite element solution with coefficients u_fe with 
+Compute L_2 error of the finite element solution with coefficients u_fe with
 respect to exact solution u
 """
 function fe_ltwo_error(Γ::EquilateralMetricGraph, u_fe::Vector, u::Vector{Function})
@@ -259,7 +265,7 @@ end
 """
     fe_error(Γ::MetricGraph, u_fe::Vector, u::Vector{Function}, u_deriv::Vector{Function}, Nx_vec::Vector)
 
-Compute L_2 and H^1 error of the finite element solution with coefficients u_fe with 
+Compute L_2 and H^1 error of the finite element solution with coefficients u_fe with
 respect to exact solution u with derivative u_deriv.
 """
 function fe_error(
@@ -350,7 +356,7 @@ end
 """
     fe_error(TP::EllipticTestProblem, u_fe::Vector)
 
-Compute L_2 and H^1 error of the finite element solution with coefficients 'u_fe' with 
+Compute L_2 and H^1 error of the finite element solution with coefficients 'u_fe' with
 respect to exact solution 'TP.u' with derivative 'TP.u_deriv'.
 """
 function fe_error(TP::EllipticTestProblem, u_fe::Vector, Nx::Union{Int,Vector})

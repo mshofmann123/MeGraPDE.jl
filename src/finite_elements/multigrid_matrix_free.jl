@@ -60,14 +60,14 @@ end
 """
     prolongate!(v_fine::Vector, lev_para::Level_Parameters, v_coarse::Vector, mg_const::MG_Constants)
 
-Perform matrix free prolongation of vector 'v_coarse' on level 'Nx_vec/2' to next finer level 'Nx_vec'. 
+Perform matrix free prolongation of vector 'v_coarse' on level 'Nx_vec/2' to next finer level 'Nx_vec'.
 
-Calls subroutines 
+Calls subroutines
 
     prolongate_E!(v_fine::Vector, lev_para::Level_Parameters, v_coarse::Vector, mg_const::MG_Constants)
     prolongate_vector_Nxe(v::Vector ,Nx_e::Int) 
 
-to perform prolongation in block form. 
+to perform prolongation in block form.
 """
 function prolongate!(
     v_fine::Vector, lev_para::Level_Parameters, v_coarse::Vector, mg_const::MG_Constants
@@ -80,7 +80,6 @@ end
     prolongate_E!(v_fine::Vector, lev_para::Level_Parameters, v_coarse::Vector, mg_const::MG_Constants)
 
 Perform prolongation from vertices to edges and inside edges
-
 """
 function prolongate_E!(
     v_fine::Vector, lev_para::Level_Parameters, v_coarse::Vector, mg_const::MG_Constants
@@ -108,7 +107,6 @@ end
     prolongate_vector_Nxe(v::Vector, Nxe::Int)
 
 Perform prolongation inside edges.
-
 """
 function prolongate_vector_Nxe(v::Vector, Nxe::Int)
     v_out = zeros(Nxe-1);
@@ -127,16 +125,15 @@ end
 """
     restrict!(d_coarse::Vector, lev_para::Level_Parameters, d_fine::Vector, mg_const::MG_Constants)
 
-Perform matrix free restriction of vector 'd_fine' on level 'Nx_vec' to next coarser level 'Nx_vec/2'. 
+Perform matrix free restriction of vector 'd_fine' on level 'Nx_vec' to next coarser level 'Nx_vec/2'.
 
-Calls subroutines 
+Calls subroutines
 
     restrict_V!(d_coarse::Vector, lev_para::Level_Parameters, d_fine::Vector, mg_const::MG_Constants)
     restrict_E!(d_coarse::Vector, lev_para::Level_Parameters, d_fine::Vector, mg_const::MG_Constants)
     restrict_vector_Nxe(v::Vector, Nxe::Int)
 
 to perform restriction in block form.
-
 """
 function restrict!(
     d_coarse::Vector, lev_para::Level_Parameters, d_fine::Vector, mg_const::MG_Constants
@@ -150,7 +147,6 @@ end
     restrict_V!(d_coarse::Vector, lev_para::Level_Parameters, d_fine::Vector, mg_const::MG_Constants)
 
 Perform restriction from edge to vertex values.
-
 """
 function restrict_V!(
     d_coarse::Vector, lev_para::Level_Parameters, d_fine::Vector, mg_const::MG_Constants
@@ -172,7 +168,6 @@ end
     restrict_E!(d_coarse::Vector, lev_para::Level_Parameters, d_fine::Vector, mg_const::MG_Constants)
 
 Perform restrictions inside edges
-
 """
 function restrict_E!(
     d_coarse::Vector, lev_para::Level_Parameters, d_fine::Vector, mg_const::MG_Constants
@@ -197,7 +192,6 @@ end
     restrict_vector_Nxe(v::Vector,Nxe::Int)
 
 Perform restrictions inside edge
-
 """
 function restrict_vector_Nxe(v::Vector, Nxe::Int)
     v_out = zeros(Int(Nxe/2)-1);
@@ -292,7 +286,7 @@ end
 
 """
     restrict!(d_Jm1::Vector, J::Int, d_J::Vector, mg_const::MG_Constants)
-    
+
 Equilateral version.
 """
 function restrict!(d_Jm1::Vector, J::Int, d_J::Vector, mg_const::MG_Constants)
@@ -305,7 +299,7 @@ end
 
 """
     prolongate_lowest_level!(v_J::Vector, J::Int, v_Jm1::Vector, mg_const::MG_Constants)
-    
+
 Equilateral version.
 """
 function prolongate_lowest_level!(
@@ -355,7 +349,6 @@ end
 
 """
     fill_jacobi_vertices!(u_V::Vector, J::Int, u::Vector, mg_const::MG_Constants)
-
 """
 function fill_jacobi_vertices!(u_V::Vector, J::Int, u::Vector, mg_const::MG_Constants)
     counter = mg_const.n+1
@@ -369,7 +362,6 @@ end
 
 """
     fill_jacobi_edges!(u::Vector, J::Int, mg_const::MG_Constants)
-
 """
 function fill_jacobi_edges!(u::Vector, J::Int, mg_const::MG_Constants)
     counter = mg_const.n+1;
@@ -393,7 +385,7 @@ end
 """
     matrix_free_jacobi!(u::Vector, J::Int, f::Vector, mg_const::MG_Constants)
 
-Iteration of matrix-free Jacobi smoother.     
+Iteration of matrix-free Jacobi smoother.
 """
 function matrix_free_jacobi!(u::Vector, J::Int, f::Vector, mg_const::MG_Constants)
     h = 2.0^(-J)
@@ -417,7 +409,7 @@ end
 """
     smooth_jacobi!(u0::Vector, J::Int, f_J::Vector, nu1::Int, mg_const::MG_Constants)
 
-Matrix-free Jacobi smoother.     
+Matrix-free Jacobi smoother.
 """
 function smooth_jacobi!(u0::Vector, J::Int, f_J::Vector, nu1::Int, mg_const::MG_Constants)
     for _ in 1:nu1
@@ -429,7 +421,6 @@ end
 
 """
     mat_mul_H_VE!(out::Vector, J::Int, u::Vector, mg_const::MG_Constants)
-
 """
 function mat_mul_H_VE!(out::Vector, J::Int, u::Vector, mg_const::MG_Constants)
     counter = mg_const.n+1
@@ -444,7 +435,6 @@ end
 
 """
     mat_mul_H_EE_EV!(out::Vector, J::Int, u::Vector, mg_const::MG_Constants)
-
 """
 function mat_mul_H_EE_EV!(out::Vector, J::Int, u::Vector, mg_const::MG_Constants)
     counter = mg_const.n+1
@@ -461,7 +451,6 @@ end
 
 """
     mat_mul_H_EE!(out::Vector, J::Int, u::Vector, counter::Int)
-
 """
 function mat_mul_H_EE!(out::Vector, J::Int, u::Vector, counter::Int)
     h = 2.0^(-J)
@@ -506,7 +495,6 @@ end
 
 """
     mat_mul_M_VE!(out::Vector, u::Vector, J::Int, mg_const::MG_Constants)
-
 """
 function mat_mul_M_VE!(out::Vector, u::Vector, J::Int, mg_const::MG_Constants)
     counter = mg_const.n + 1;
@@ -521,7 +509,6 @@ end
 
 """
     mat_mul_M_EE_EV!(out::Vector, u::Vector ,J::Int, mg_const::MG_Constants)
-
 """
 function mat_mul_M_EE_EV!(out::Vector, u::Vector, J::Int, mg_const::MG_Constants)
     counter = mg_const.n+1;
@@ -538,7 +525,6 @@ end
 
 """
     mat_mul_M_EE!(out::Vector, u::Vector, J::Int, counter::Int)
-
 """
 function mat_mul_M_EE!(out::Vector, u::Vector, J::Int, counter::Int)
     h = 2.0^(-J)
@@ -554,7 +540,7 @@ end
 """
     MGM_matrix_free_jacobi!(u0::Vector, J::Int, f_J::Vector, J0::Int, mg_set::MG_Settings, mg_const::MG_Constants)
 
-Matrix free MGM with jacobi smoother. 
+Matrix free MGM with jacobi smoother.
 """
 function MGM_matrix_free_jacobi!(
     u0::Vector, J::Int, f_J::Vector, J0::Int, mg_set::MG_Settings, mg_const::MG_Constants
@@ -710,9 +696,9 @@ end
 """
     cn_mat_mul!(out::Vector, lev_para::Level_Parameters, vec::Vector, dt::Number, mg_const::MG_Constants)
 
-Perform matrix free multiplication (M̂+dt/2*L̂)*'vec'. 
+Perform matrix free multiplication (M̂+dt/2*L̂)*'vec'.
 
-Calls subroutines 
+Calls subroutines
 
     cn_mat_mul_VV!(out::Vector, vec::Vector, dt::Float64, Nx_vec::Vector, h_vec::Vector, j::Int, counter::Int)
     cn_mat_mul_VE!(out::Vector, vec::Vector,dt::Float64,Nx_vec::Vector,h_vec::Vector,terms_e::Vector,origs_e::Vector,m::Int,counter::Int)
@@ -731,7 +717,7 @@ where
     (M̂+dt/2*L̂)_EE * vec_E =     [                ⋱ ⋱                   ]  [   ⋮    ]  
                                 [                        (M̂+dt/2*L̂)_em  ]  [ vec_em ] 
 
-is again performed in block form according to the edges e_1, … ,e_m. 
+is again performed in block form according to the edges e_1, … ,e_m.
 """
 function cn_mat_mul!(
     out::Vector, lev_para::Level_Parameters, vec::Vector, dt::Number, mg_const::MG_Constants
@@ -949,7 +935,6 @@ end
 
 """
     cn_coarse_grid_correction_solve!(v_Jm1::Vector, lev_para::Level_Parameters, dt::Float64, d_Jm1::Vector, mg_const::MG_Constants, mg_set::MG_Settings)
-
 """
 function cn_coarse_grid_correction_solve!(
     v_Jm1::Vector,

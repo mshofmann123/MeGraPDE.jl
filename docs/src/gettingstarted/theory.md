@@ -1,3 +1,3 @@
 # Background
 
-In preparation, see , chapter xx for the moment. 
+In preparation, see , chapter xx for the moment.

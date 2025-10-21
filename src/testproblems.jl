@@ -13,7 +13,7 @@ function show(io::IO, mime::MIME{Symbol("text/plain")}, TP::TestProblem)
 end
 
 """
-Elliptic Test Problem 
+Elliptic Test Problem
 
 $(FIELDS)
 """
@@ -90,13 +90,18 @@ const TestProblem243 = test_problem_2_4_3()
 ```math
 \\mathcal{H} u + u = f
 ```
+
 on star graph with
+
 ```math
 f = -\\frac{(\\exp(-(x-x_0)^2/s^2) \\cdot (4 (x-x_0)^2-2s^2)}{s^4} + \\exp \\left(- \\frac{(x-x_0)^2}{s^2} \\right)
 ```
+
 on one edge and exact solution
+
 ```math
 \\exp \\left(- \\frac{(x-x_0)^2}{s^2} \\right).
+```    # choose edge to assign non-zero function on
 ```
 """
 function test_problem_7_1_1()
@@ -137,7 +142,7 @@ const TestProblem711 = test_problem_7_1_1()
 ## ToDo: Write function plot_testproblem() that illustrates test problems --> elliptic print rhs?, parabolic print init
 
 """
-Parabolic Test Problem 
+Parabolic Test Problem
 
 $(FIELDS)
 """
@@ -273,7 +278,6 @@ end
 
 """
     test_problem_7_2_1()    
-
 """
 function test_problem_7_2_1()
     Γ = metric_star_graph()

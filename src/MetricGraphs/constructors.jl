@@ -4,7 +4,6 @@
     metric_tree_graph(; ℓ=1)
 
 Create a tree graph with n=16 vertices and m=15 edges of lengths 'ℓ'.
-    
 """
 function metric_tree_graph(; ℓ=1)
     G_tree = path_graph(2);
@@ -61,7 +60,6 @@ end
     metric_cycle_graph(; ℓ=1)
 
 Create a cycle graph with n=6 vertices and m=6 edges of lengths 'ℓ'.
-    
 """
 function metric_cycle_graph(; ℓ=1)
     G = CycleGraph(6);
@@ -81,7 +79,6 @@ end
     metric_graphene_graph(; ℓ=1)
 
 Create a graphene graph with n=12 vertices and m=13 edges of lengths 'ℓ'.
-    
 """
 function metric_graphene_graph(; ℓ=1)
     G = CycleGraph(6);
@@ -116,7 +113,6 @@ end
     metric_star_graph(; ℓ=1)
 
 Create a star graph with n=5 vertices and m=4 edges of lengths 'ℓ'.
-    
 """
 function metric_star_graph(; ℓ=1)
     coords = [[0, 0], [ℓ, 0], [-ℓ, 0], [0, ℓ], [0, -ℓ]]
@@ -127,7 +123,6 @@ end
     metric_star_graph(ℓ_vec::Vector)
 
 Create a star graph with edge lengths 'ℓ_vec'.
-
 """
 function metric_star_graph(ℓ_vec::Vector)
     return MetricGraph(star_graph(length(ℓ_vec)+1), ℓ_vec, nothing)
@@ -137,7 +132,6 @@ end
     metric_diamond_graph(; ℓ=1)
 
 Create a diamond graph with n=4 vertices and m=5 edges of lengths 'ℓ'.
-    
 """
 function metric_diamond_graph(; ℓ=1)
     G = cycle_graph(4);
@@ -172,12 +166,13 @@ end
 """
     metric_barabasi_albert(n::Int, k::Int; ℓ=1, seed=nothing)
 
-Create Barbási-Albert graph with 'n' vertices by growing an initial graph with 'k' vertices and 
-attaching each vertex with 'k' edges, see Graphs.barabasi_albert. 
+Create Barbási-Albert graph with 'n' vertices by growing an initial graph with 'k' vertices and
+attaching each vertex with 'k' edges, see Graphs.barabasi_albert.
 
 ### Optional Arguments
-- ℓ: specify equilateral edge length, vector with edge length or ":non_equi" for random edge length 
-- seed=nothing: set the RNG seed.
+
+  - ℓ: specify equilateral edge length, vector with edge length or ":non_equi" for random edge length
+  - seed=nothing: set the RNG seed.
 """
 function metric_barabasi_albert(n::Int, k::Int; ℓ=1, seed=nothing)
     G = barabasi_albert(n, k; seed=seed)

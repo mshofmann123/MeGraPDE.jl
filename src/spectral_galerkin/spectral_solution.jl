@@ -25,7 +25,6 @@ end
     spectral_solution_deriv(Γ::AbstractMetricGraph, σ::QuantumGraphEigen, coef::Vector)
 
 Explicitly construct derivative u_Q' of spectral solution on 'Γ' from eigenbasis 'σ' and coefficents 'coef'.
-
 """
 function spectral_solution_deriv(Γ::AbstractMetricGraph, σ::QuantumGraphEigen, coef::Vector)
     Λ_sqrt = sqrt.(σ.Λ);
@@ -78,7 +77,6 @@ end
 
 """
     trunc_error(TP::EllipticTestProblem, σ::QuantumGraphEigen, coef::Vector)
-
 """
 function trunc_error(TP::EllipticTestProblem, σ::QuantumGraphEigen, coef::Vector)
     spec_sol = spectral_solution(TP.Γ, σ, coef);
@@ -99,7 +97,6 @@ end
     L2_norm_spectral(coef::Vector)
 
 Compute L^2 Norm of spectral solution ``u_Q = \\sum_{q \\le Q} 'coef'_q \\phi_q``
-
 """
 function L2_norm_spectral(coef::Vector)
     return sqrt(coef'*coef)
@@ -109,7 +106,6 @@ end
     H1_seminorm_spectral(σ::QuantumGraphEigen, coef::Vector)
 
 Computes ``H^1(\\Gamma)`` semimorm of spectral solution ``u_Q = \\sum_{q \\le Q} 'coef'_q \\phi_q`` with eigenvalues 'σ.Λ'.
-
 """
 function H1_seminorm_spectral(σ::QuantumGraphEigen, coef::Vector)
     return sqrt(coef'*Diagonal(σ.Λ)*coef)
@@ -118,8 +114,7 @@ end
 """
     H1_seminorm_spectral(Λ::Vector, coef::Vector)
 
-Computes `H^1(\\Gamma)`` of spectral solution ``u_Q = \\sum_{q \\le Q} 'coef'_q \\phi_q`` with eigenvalues 'Λ'.
-
+Computes `H^1(\\Gamma)``of spectral solution``u_Q = \\sum_{q \\le Q} 'coef'_q \\phi_q`` with eigenvalues 'Λ'.
 """
 function H1_seminorm_spectral(Λ::Vector, coef::Vector)
     return sqrt(coef'*Diagonal(Λ)*coef)

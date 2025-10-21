@@ -1,6 +1,5 @@
 # Spectral Galerkin Method
 
-
 ```@docs
 projection_coefficients
 projection_coefficients_filon

@@ -5,8 +5,8 @@
 
 Return eigenvalues and eigenvectors of the harmonic graph Laplacian Matrix ``\\Delta_{\\mathcal{G}}``
 
-A complete eigendecomposition of the normalized graph Laplacian is computed using julias "eigen". 
-The harmonic graph Laplacian is similar to the normalized Laplacian, in particular the eigenvalues 
+A complete eigendecomposition of the normalized graph Laplacian is computed using julias "eigen".
+The harmonic graph Laplacian is similar to the normalized Laplacian, in particular the eigenvalues
 ``\\mu`` agree and ``\\Phi = \\mathbf{D}^{-\\frac{1}{2}} \\Psi``
 """
 function harmonic_eigen(G::SimpleGraph)
@@ -136,14 +136,16 @@ end
 """
     eigen_quantum(Γ::EquilateralMetricGraph; K=3, sorted=true, sparse_svd=false)
 
-Compute all eigenvalues ``\\lambda < ('K' \\pi)/ \\ell)^2`` and corresponding eigenfunctions ``\\phi`` with 
+Compute all eigenvalues ``\\lambda < ('K' \\pi)/ \\ell)^2`` and corresponding eigenfunctions ``\\phi`` with
+
 ```math
 {\\phi}_e = A_e \\cos(\\sqrt{\\lambda} x) + B_e \\sin (\\sqrt{\\lambda} x)
 ```
+
 of the equilateral metric graph 'Γ'.
 
-The coefficient ``A_e``, ``B_e`` are stored in A = [Ae1,…,Aem]' and B = [Be1,…,Bem]' for 
-each eigenfunction. The coefficients are normalized such that all eigenfunctions fulfill `` \\| \\phi \\|=1 ``.
+The coefficient ``A_e``, ``B_e`` are stored in A = [Ae1,…,Aem]' and B = [Be1,…,Bem]' for
+each eigenfunction. The coefficients are normalized such that all eigenfunctions fulfill ``\\| \\phi \\|=1``.
 """
 function eigen_quantum(Γ::EquilateralMetricGraph; K=3, sparse_svd=false, round_off=false)
     n = nv(Γ.G);
@@ -331,10 +333,10 @@ end
 """
     eigen_quantum_old(Γ::EquilateralMetricGraph; K=3, sorted=true, sparse_svd=false)
 
-Compute all eigenvalues λ < ('K'*π/ℓ)^2 and corresponding eigenfunctions ϕ with 
+Compute all eigenvalues λ < ('K'*π/ℓ)^2 and corresponding eigenfunctions ϕ with
 ϕ_e = A_e cos(sqrt(λ)x) + B_e sin (sqrt(λ)x) of the equilateral metric graph 'Γ'.
 
-The coefficient A_e, B_e are stored in A = [A_e1,…,A_em]' and B = [B_e1,…,B_em]' for 
+The coefficient A_e, B_e are stored in A = [A_e1,…,A_em]' and B = [B_e1,…,B_em]' for
 each eigenfunction. The coefficients are normalized such that all eigenfunctions fulfill ||ϕ||=1.
 """
 function eigen_quantum_old(Γ::EquilateralMetricGraph; K=3, sorted=true, sparse_svd=false)
@@ -532,8 +534,7 @@ end
 """
     count_eigvals_K(Γ::EquilateralMetricGraph, K::Int)
 
-Return number of eigenvalues `` \\lambda < ('K'* \\pi/ \\ell)^2 ``.
-
+Return number of eigenvalues ``\\lambda < ('K'* \\pi/ \\ell)^2``.
 """
 function count_eigvals_K(Γ::EquilateralMetricGraph, K::Int)
     # determine number of vertex and non-vertex eigenvalues

@@ -67,7 +67,6 @@ end
 Compute projection coefficients of 'u' on 'Γ' for eigenfunction in 'σ' with 'quad_nodes' quadrature nodes.
 
 Uses (matrix-free) Filon-Quadrature as described in \\[W\\], Section 4.3.2.
-
 """
 function projection_coefficients_filon(
     Γ::EquilateralMetricGraph, σ::QuantumGraphEigen, u::Vector{Function}, quad_nodes::Int
@@ -81,7 +80,6 @@ end
 
 """
     fill_proj_coefs!(coefs::Vector, σ::QuantumGraphEigen, u::Vector{Function}, h_kap::Number, N_kap::Int)
-
 """
 function fill_proj_coefs!(
     coefs::Vector, σ::QuantumGraphEigen, u::Vector{Function}, h_kap::Number, N_kap::Int
@@ -122,7 +120,6 @@ end
 
 """
     fill_vecs!(vec_x2::Vector, vec_x::Vector, vec_1::Vector, h_kap::Number, N_kap::Int, boldsymbolu_e, coefs_alpha, count)
-
 """
 function fill_vecs!(
     vec_x2::Vector,
@@ -202,7 +199,6 @@ end
 
 """
     integrals_q_j(h_kap::Number, N_kap::Int, vec_x2::Vector, vec_x::Vector, vec_1::Vector, λ, λ_sqrt, Ajq, Bjq, q)
-
 """
 function integrals_q_j(
     h_kap::Number,

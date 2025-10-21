@@ -19,15 +19,15 @@ end
 """
     smooth(u::Vector, b::Vector, smooth_mats::SmoothingMatrices)
 
-Perform one smoothing step of the weighted jacobi iteration u^(k+1) = 1/2*(I-D^{-1}*(Low+Up))*u + 1/2*D^{-1}*b. 
+Perform one smoothing step of the weighted jacobi iteration u^(k+1) = 1/2*(I-D^{-1}*(Low+Up))*u + 1/2*D^{-1}*b.
 
 Objective is the iterative solution of Ax=b.
 
-# Arguments 
-- 'u::Vector': current iterative  
-- 'b::Vector': right-hand side
-- 'smooth_mats::SmoothingMatrices': Matrices smooth_mats.D_inv,smooth_mats.Low,smooth_mats.Up of the decomposition A=Low+Up+D 
+# Arguments
 
+  - 'u::Vector': current iterative
+  - 'b::Vector': right-hand side
+  - 'smooth_mats::SmoothingMatrices': Matrices smooth_mats.D_inv,smooth_mats.Low,smooth_mats.Up of the decomposition A=Low+Up+D
 """
 function smooth(u::Vector, b::Vector, smooth_mats::SmoothingMatrices)
     return 0.5*(
@@ -49,7 +49,6 @@ end
     prolongation_graph(J::Int ,AD_EV::SparseMatrixCSC{Bool, Int64}, n::Int, m::Int)
 
 Assemble prolongation matrix 'P' for prolongation from level J-1 to level 'J'.
-
 """
 function prolongation_graph(J::Int, AD_EV::SparseMatrixCSC{Bool,Int64}, n::Int, m::Int)
     if J==1
@@ -90,7 +89,6 @@ end
     cn_mgm_iter!(u_iter::Matrix, J::Int, dt::Number, theta::Int, FE_matrix::SparseMatrixCSC, FE_mass_matrix::SparseMatrixCSC, n::Int, m::Int, rhs::Matrix, u_start::Matrix, nu1::Int, nu2::Int, mu::Int)
 
 Perform Crank-Nicolson-Multigrid iteration to compute 'theta' time steps on 'u_iter' with step size 'dt'.
-
 """
 function cn_mgm_iter!(
     u_iter::Matrix,
@@ -217,7 +215,6 @@ end
     cn_mgm_iter!(u_iter::Matrix, J::Int, dt::Number, FE_matrix::SparseMatrixCSC, FE_mass_matrix::SparseMatrixCSC, n::Int, m::Int, rhs::Matrix, u_start::Matrix, nu1::Int, nu2::Int, mu::Int)
 
 Perform Crank-Nicolson-Multigrid iteration to compute 'theta' time steps on 'u_iter' with step size 'dt'.
-
 """
 function cn_mgm_iter!(
     u_iter::Vector,

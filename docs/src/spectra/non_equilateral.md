@@ -1,6 +1,5 @@
 # Non-Equilateral Graphs
 
-
 ## Full Doc
 
 ```@docs

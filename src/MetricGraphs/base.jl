@@ -4,7 +4,6 @@
     metric_graph(G::SimpleGraph, ℓ_vec::Vector; vertex_coords=nothing)
 
 Create metric graph from simple graph 'G' with edge lengths 'ℓ_vec' and optionally assign a coordinate specified in 'coord' to the vertices.
-
 """
 function metric_graph(G::SimpleGraph, ℓ_vec::Vector; vertex_coords=nothing)
     return MetricGraph(G, ℓ_vec, vertex_coords)

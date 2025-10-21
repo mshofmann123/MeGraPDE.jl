@@ -84,7 +84,7 @@ end
 """
     eigvals_equilateral_representation(Γ::MetricGraph, h::Number)
 
-Compute the exact eigenvalues of 'Γ' by an equilateral representation with 
+Compute the exact eigenvalues of 'Γ' by an equilateral representation with
 edge length 'h'
 """
 function eigvals_equilateral_representation(Γ::MetricGraph, h::Number)
@@ -221,7 +221,6 @@ end
     H_matrix_deriv(z::Number, Γ::MetricGraph)
 
 Compute H'(z) for a metric graph with incidence matrix 'Inc' and edge length 'ℓ_vec'.
-
 """
 function H_matrix_deriv(z::Number, Γ::MetricGraph)
     bfN = incidence_matrix(Γ.G; oriented=true)
@@ -241,7 +240,6 @@ end
     H_matrix_deriv(z::Number, bfN::SparseMatrixCSC, ℓ_vec::Vector)
 
 Compute H'(z) for a metric graph with incidence matrix 'Inc' and edge length 'ℓ_vec'.
-
 """
 function H_matrix_deriv(z::Number, bfN::SparseMatrixCSC, ℓ_vec::Vector)
     df_diag = z -> ℓ_vec ./ (2*sqrt(z)*sin.(sqrt(z) .* ℓ_vec) .^ 2)
@@ -262,7 +260,6 @@ end
     newton_trace(Γ::MetricGraph, z_start::Number)
 
 Newton-trace iteration to determine roots of det(H(z)).
-
 """
 function newton_trace(Γ::MetricGraph, z_start::Number)
     z = z_start
@@ -303,7 +300,6 @@ end
     nested_iteration_newton_trace(Γ::MetricGraph; lev_zero=0, lev_max=7, Q=5, save_each_lev=false, return_eigvecs=false)
 
 Conduct nested iteration newton trace algorithm to find the first 'Q' eigenvalues of 'Γ'.
-
 """
 function nested_iteration_newton_trace(
     Γ::MetricGraph; lev_zero=0, lev_max=7, Q=5, save_each_lev=false, return_eigvecs=false

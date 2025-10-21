@@ -1,6 +1,5 @@
 # Equilateral Graphs
 
-
 ## Full Doc
 
 ```@docs
