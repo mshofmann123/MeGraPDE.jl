@@ -4,8 +4,7 @@ using LinearAlgebra, Graphs, SparseArrays
 using DocStringExtensions
 using ..MeGraPDE
 
-import Base:
-    show 
+import Base: show
 
 export
     # struct
@@ -34,8 +33,7 @@ export
     H_matrix,
     H_matrix_deriv
 
-
-abstract type QuantumGraphDecomposition end 
+abstract type QuantumGraphDecomposition end
 
 """
 Spectrum of equilateral graph
@@ -53,18 +51,20 @@ struct QuantumGraphEigen <: QuantumGraphDecomposition
     B::SparseMatrixCSC
 end
 
-function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphDecomposition) 
+function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphDecomposition)
     #summary(io, σ); println(io)
     println(io, "First $(σ.Q) eigenvalues and eigenfunctions:")
     println(io, "values:")
     show(io, mime, σ.Λ)
-    println(io, "\n Coefficients of eigenfunctions ϕ_e = A_e cos(√λ x) + B_e sin (√λ x) for q = 1, …, Q:")
+    println(
+        io,
+        "\n Coefficients of eigenfunctions ϕ_e = A_e cos(√λ x) + B_e sin (√λ x) for q = 1, …, Q:",
+    )
     println(io, "A_e:")
     show(io, mime, σ.A)
     println(io, "\n B_e:")
     show(io, mime, σ.B)
 end
-
 
 """
 Equilateral Eigenfunction
@@ -92,7 +92,7 @@ struct QuantumGraphEigvals
     Λ::Vector
 end
 
-function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphEigvals) 
+function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphEigvals)
     #summary(io, σ); println(io)
     println(io, "First $(σ.Q) eigenvalues:")
     show(io, mime, σ.Λ)
@@ -110,12 +110,11 @@ struct QuantumGraphVertexEigvals
     Λ::Vector
 end
 
-function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphVertexEigvals) 
+function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphVertexEigvals)
     #summary(io, σ); println(io)
     println(io, "First $(σ.Q) vertex eigenvalues:")
     show(io, mime, σ.Λ)
 end
-
 
 """
 Eigenfunction of quantum graph
@@ -131,7 +130,7 @@ struct QuantumGraphEigenfunction
     B::Vector
 end
 
-function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphEigenfunction) 
+function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphEigenfunction)
     #summary(io, σ); println(io)
     println(io, "Eigenfunction corresponding to $(σ.Q) with coefficients:")
     println(io, "A_e:")
@@ -139,7 +138,6 @@ function show(io::IO, mime::MIME{Symbol("text/plain")}, σ::QuantumGraphEigenfun
     println(io, "B_e:")
     show(io, mime, σ.B)
 end
-
 
 """
 EquilateralApproximation of quantum graph
@@ -155,14 +153,11 @@ struct EquilateralApproximation
     type::Symbol
 end
 
-
-
-function show(io::IO, mime::MIME{Symbol("text/plain")}, G_h::EquilateralApproximation) 
+function show(io::IO, mime::MIME{Symbol("text/plain")}, G_h::EquilateralApproximation)
     #summary(io, σ); println(io)
     println(io, "Equilateral $(G_h.type) approximation:")
     show(io, mime, G_h.Γ̃)
 end
-
 
 """
 Eigenvalues of equilateral approximation
@@ -175,7 +170,6 @@ struct EquilateralApproxEigvals
     "eigenvalues"
     Λ::Vector
 end
-
 
 include("equilateral_spectrum.jl")
 include("non_equilateral_spectrum.jl")

@@ -5,10 +5,9 @@ module MeGraPDE
 using DocStringExtensions
 using SparseArrays
 
-import Base:
-    show 
+import Base: show
 
-export 
+export
     # MetricGraphs
     MetricGraph,
     EquilateralMetricGraph,
@@ -81,7 +80,6 @@ export
     animate_diffusion,
     animate_fractional_diffusion
 
-    
 # Metric Graphs
 include("MetricGraphs/MetricGraphs.jl")
 using .MetricGraphs

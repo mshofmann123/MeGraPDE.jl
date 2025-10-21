@@ -1,6 +1,5 @@
 # © Anna Weller, University of Cologne, 2023
 
-
 using Graphs
 
 """
@@ -10,18 +9,17 @@ Explicitly construct spectral solution u_Q on 'Γ' from eigenbasis 'σ' and coef
 """
 function spectral_solution(Γ::AbstractMetricGraph, σ::QuantumGraphEigen, coef::Vector)
     Λ_sqrt = sqrt.(σ.Λ);
-    u_Q = Vector{Function}(undef,ne(Γ.G));
-    for j = 1:ne(Γ.G)
+    u_Q = Vector{Function}(undef, ne(Γ.G));
+    for j in 1:ne(Γ.G)
         function u_Q_e(x)
-            Ae_Cos_x = [σ.A[j,q]*cos(Λ_sqrt[q]*x) for q=1:length(coef)];
-            Be_Sin_x = [σ.B[j,q]*sin(Λ_sqrt[q]*x) for q=1:length(coef)];
+            Ae_Cos_x = [σ.A[j, q]*cos(Λ_sqrt[q]*x) for q in 1:length(coef)];
+            Be_Sin_x = [σ.B[j, q]*sin(Λ_sqrt[q]*x) for q in 1:length(coef)];
             return coef'*(Ae_Cos_x+Be_Sin_x)
         end
         u_Q[j] = u_Q_e;
     end
     return u_Q
 end
-
 
 """
     spectral_solution_deriv(Γ::AbstractMetricGraph, σ::QuantumGraphEigen, coef::Vector)
@@ -31,11 +29,11 @@ Explicitly construct derivative u_Q' of spectral solution on 'Γ' from eigenbasi
 """
 function spectral_solution_deriv(Γ::AbstractMetricGraph, σ::QuantumGraphEigen, coef::Vector)
     Λ_sqrt = sqrt.(σ.Λ);
-    u_Q_deriv = Vector{Function}(undef,ne(Γ.G));
-    for j = 1:ne(Γ.G)
+    u_Q_deriv = Vector{Function}(undef, ne(Γ.G));
+    for j in 1:ne(Γ.G)
         function u_Q_deriv_e(x)
-            Ae_Cos_x=[-σ.A[j,q]*sin(Λ_sqrt[q]*x)*Λ_sqrt[q] for q=1:σ.Q];
-            Be_Sin_x=[σ.B[j,q]*cos(Λ_sqrt[q]*x)*Λ_sqrt[q] for q=1:σ.Q];
+            Ae_Cos_x=[-σ.A[j, q]*sin(Λ_sqrt[q]*x)*Λ_sqrt[q] for q in 1:σ.Q];
+            Be_Sin_x=[σ.B[j, q]*cos(Λ_sqrt[q]*x)*Λ_sqrt[q] for q in 1:σ.Q];
             return coef'*(Ae_Cos_x+Be_Sin_x)
         end
         u_Q_deriv[j] = u_Q_deriv_e;
@@ -51,13 +49,13 @@ Compute coefficents of the spectral Galerkin solution of 'TP' with eigenfunction
 If filon=true, the more economic filon-quadrature is applied instead of QuadGK.
 """
 function spectral_solver(TP::EllipticTestProblem, K::Int; filon=false)
-    σ = eigen_quantum(TP.Γ, K=K);
+    σ = eigen_quantum(TP.Γ; K=K);
     if filon == false
         f = projection_coefficients(TP.Γ, σ, TP.rhs)
     else
         f = projection_coefficients_filon(TP.Γ, σ, TP.rhs, 15*K)
     end
-    return Diagonal((σ.Λ + TP.pot*ones(σ.Q)).^(-1)) * f
+    return Diagonal((σ.Λ + TP.pot*ones(σ.Q)) .^ (-1)) * f
 end
 
 """
@@ -68,7 +66,7 @@ Compute coefficents of the spectral Galerkin solution of 'TP' at time 'T' with e
 If filon=true, the more economic filon-quadrature is applied instead of QuadGK.
 """
 function spectral_solver(TP::TPGeneralizedHeat, T::Number, K::Int; filon=false)
-    σ = eigen_quantum(TP.Γ, K=K);
+    σ = eigen_quantum(TP.Γ; K=K);
     if filon == false
         coef = projection_coefficients(TP.Γ, σ, TP.u0)
         return diagm(exp.(-T*σ.Λ))*coef
@@ -78,7 +76,6 @@ function spectral_solver(TP::TPGeneralizedHeat, T::Number, K::Int; filon=false)
     end
 end
 
-
 """
     trunc_error(TP::EllipticTestProblem, σ::QuantumGraphEigen, coef::Vector)
 
@@ -87,17 +84,16 @@ function trunc_error(TP::EllipticTestProblem, σ::QuantumGraphEigen, coef::Vecto
     spec_sol = spectral_solution(TP.Γ, σ, coef);
     if typeof(TP.Γ) == EquilateralMetricGraph
         ℓ_vec = TP.Γ.ℓ * ones(Int, ne(TP.Γ.G))
-    else 
+    else
         ℓ_vec = TP.Γ.ℓ_vec
     end
     trunc_err = 0;
-    for j = 1:ne(TP.Γ.G)
+    for j in 1:ne(TP.Γ.G)
         trunc_diff(x) = (TP.u[j](x)-spec_sol[j](x))^2;
-        trunc_err += quadgk(trunc_diff,0,ℓ_vec[j])[1]
+        trunc_err += quadgk(trunc_diff, 0, ℓ_vec[j])[1]
     end
     return sqrt(trunc_err)
 end
-
 
 """
     L2_norm_spectral(coef::Vector)

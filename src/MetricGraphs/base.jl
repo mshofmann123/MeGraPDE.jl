@@ -28,7 +28,6 @@ function edge_length(Γ::MetricGraph, j::Int)
     return Γ.ℓ_vec[j]
 end
 
-
 """
     edge_length(Γ::EquilateralMetricGraph)
 
@@ -37,7 +36,6 @@ Equilateral version.
 function edge_length(Γ::EquilateralMetricGraph)
     return Γ.ℓ
 end
-
 
 """
     vol(Γ::MetricGraph)

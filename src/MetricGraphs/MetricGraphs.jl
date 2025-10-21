@@ -6,10 +6,9 @@ using LinearAlgebra, Graphs, SparseArrays
 using DocStringExtensions
 using Distributions
 
-import Base:
-    show 
+import Base: show
 
-export 
+export
     # types
     AbstractMetricGraph,
     MetricGraph,
@@ -31,13 +30,15 @@ export
     gaussian_initial,
     model_initial_condition
 
-abstract type AbstractMetricGraph end 
+abstract type AbstractMetricGraph end
 
-function show(io::IO, ::MIME"text/plain", Γ::AbstractMetricGraph) 
-    if typeof(Γ) == MetricGraph 
+function show(io::IO, ::MIME"text/plain", Γ::AbstractMetricGraph)
+    if typeof(Γ) == MetricGraph
         return print(io, "{n=$(nv(Γ.G)), m=$(ne(Γ.G))} metric graph")
     elseif typeof(Γ) == EquilateralMetricGraph
-        return print(io, "{n=$(nv(Γ.G)),m=$(ne(Γ.G)),ℓ=$(edge_length(Γ))} equilateral metric graph")
+        return print(
+            io, "{n=$(nv(Γ.G)),m=$(ne(Γ.G)),ℓ=$(edge_length(Γ))} equilateral metric graph"
+        )
     end
 end
 
@@ -54,7 +55,13 @@ struct MetricGraph <: AbstractMetricGraph
     "Array containing the coordinates of the vertices; specify 'nothing' if no coordinates available"
     coords::Union{Array,Nothing}
 
-    MetricGraph(G, ℓ_vec, coords) = length(ℓ_vec) != ne(G) ? error("The edge lengths provided does not match the number of edges in G") : new(G, ℓ_vec, coords)
+    function MetricGraph(G, ℓ_vec, coords)
+        if length(ℓ_vec) != ne(G)
+            error("The edge lengths provided does not match the number of edges in G")
+        else
+            new(G, ℓ_vec, coords)
+        end
+    end
 end
 
 """
@@ -71,9 +78,8 @@ struct EquilateralMetricGraph <: AbstractMetricGraph
     coords::Union{Array,Nothing}
 end
 
-
 include("base.jl")
 include("extended_graph.jl")
 include("constructors.jl")
 
-end 
+end
