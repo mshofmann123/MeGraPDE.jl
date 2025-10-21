@@ -1,0 +1,12 @@
+[deps]
+Documenter = "e30172f5-a6a5-5a46-863b-614d45cd2de4"
+Graphs = "86223c79-3864-5bf0-83f7-82e725a168b6"
+MeGraPDE = "f5133942-26e0-4604-9a1b-db49f110946e"
+Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
+
+[compat]
+Documenter = "1.14"
+Graphs = "1.13"
+MeGraPDE = "0.1"
+Plots = "1.41"
+julia = "1.10"

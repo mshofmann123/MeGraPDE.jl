@@ -5,5 +5,5 @@
 projection_coefficients
 projection_coefficients_filon
 spectral_solution
-spectral_galerkin_solver
+spectral_solver
 ```
