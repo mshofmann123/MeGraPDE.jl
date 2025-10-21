@@ -197,26 +197,6 @@ function gaussian_initial(Γ, j_init =:randomly )
     return u0
 end
 
-"""
-    gaussian_initial(Γ; j_init = :randomly)
-
-Assigne gaussian intial condition to one edge (randomly chosen or specified) of the graph.
-"""
-function gaussian_initial(Γ, j_init =:randomly)
-    u0 = Vector{Function}(undef,ne(Γ.G))
-    if j_init == :randomly
-        j_init = rand(1:ne(Γ.G))
-    end
-    for j = 1:ne(Γ.G)
-        if j == j_init
-            x0 = Γ.ℓ/2; s = Γ.ℓ/10;
-            u0[j] = x -> exp(-(x-x0)^2/s^2)
-        else
-            u0[j] = x -> 0
-        end
-    end
-    return u0
-end
 
 """
     model_initial_condition(Γ, j_init =:randomly)

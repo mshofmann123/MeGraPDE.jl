@@ -862,9 +862,6 @@ function cn_fill_jacobi_edges!(u::Vector, lev_para::Level_Parameters, dt::Number
     end
 end
 
-function half_u!(u)
-    u=1/2*u
-end
 
 ## Multigrid
 
