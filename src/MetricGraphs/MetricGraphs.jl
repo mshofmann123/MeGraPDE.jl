@@ -18,6 +18,7 @@ export
     edge_length,
     vol,
     extended_incidence_matrix,
+    extended_metric_graph,
     discretize_function,
     extended_laplacian,
     metric_tree_graph,
@@ -76,6 +77,10 @@ struct EquilateralMetricGraph <: AbstractMetricGraph
     ℓ::Number
     "Array containing the coordinates of the vertices; specify 'nothing' if no coordinates available"
     coords::Union{Array,Nothing}
+end
+
+function EquilateralMetricGraph(G::SimpleGraph, ℓ::Number)
+    return EquilateralMetricGraph(G, ℓ, Nothing)
 end
 
 include("base.jl")

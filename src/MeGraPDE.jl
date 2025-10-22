@@ -15,6 +15,7 @@ export
     edge_length,
     vol,
     extended_incidence_matrix,
+    extended_metric_graph,
     extended_laplacian,
     discretize_function,
     metric_tree_graph,

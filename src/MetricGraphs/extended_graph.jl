@@ -66,6 +66,31 @@ function extended_incidence_matrix(Γ::EquilateralMetricGraph, h_max::Number)
 end
 
 """
+    extended_metric_graph(Γ::EquilateralMetricGraph, h_max::Number)
+
+Create an extended metric graph where each edge is subdivided according to h_max.
+Returns a new MetricGraph where each edge of length ℓ_vec[j] is replaced by
+Nxe subdivisions of length ℓ_vec[j]/Nxe.
+"""
+function extended_metric_graph(Γ::EquilateralMetricGraph, h_max::Number)
+    # Get the extended incidence matrix
+    Inc = extended_incidence_matrix(Γ, h_max)
+    Adj = Inc'*Inc - Diagonal(diag(Inc'*Inc))    
+    # Create new graph from the incidence matrix
+    new_G = SimpleGraph(Adj)
+    
+    # calculate new edge length
+    Nxe = Int(ceil(Γ.ℓ/h_max))
+    new_ℓ = Γ.ℓ/Nxe
+
+    # Create and return new metric graph
+    return EquilateralMetricGraph(new_G, new_ℓ, nothing)
+end
+
+
+
+
+"""
     extended_laplacian(Γ::EquilateralMetricGraph, k::Int)
 
 Compute extended graph Laplacian matrix of 'Γ' with 'k' artificial vertices on each edge.
