@@ -41,3 +41,5 @@ makedocs(;
         testproblems_page,
     ],
 )
+
+deploydocs(; repo="github.com/mshofmann123/MeGraPDE.jl.git")
